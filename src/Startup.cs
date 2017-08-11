@@ -41,6 +41,9 @@ namespace Code
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             services.AddMvc();
+             var connection = @"Server=tcp:myblogpost.database.windows.net,1433;Initial Catalog=myBlogPosts;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+            services.AddDbContext<PostsContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
